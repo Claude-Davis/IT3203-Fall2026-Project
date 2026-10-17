@@ -2,7 +2,7 @@ html {
     background-color: #ffffff;
 }
 
-  * { outline: 1px solid red; } 
+  /* * { outline: 1px solid red; } */
 
 .dropdown {
     position: relative;
