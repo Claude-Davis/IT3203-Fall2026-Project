@@ -69,13 +69,11 @@ footer {
     background-color: #2798f5;
     font-family: georgia;
     font-size: 15px;
-    height: 55px;
     line-height: 1.5;
     border: 1px solid #2798f5;
     padding: 20px 0;
 }
 .footer-container {
-    display: flex;
     text-align: center;
     vertical-align: middle;
     max-width: 1200px;
