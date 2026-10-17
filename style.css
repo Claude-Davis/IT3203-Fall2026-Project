@@ -1,1 +1,91 @@
+parent-container {
+    display: flex;
+}
 
+html {
+    background-color: #000000;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropbtn {
+    background-color: red;
+    padding: 3px;
+    cursor: pointer;
+}
+.dropbtn:hover {
+    background-color: pink;
+}
+.menu-content {
+    display: none;
+    position: absolute;
+    background-color: blue;
+}.menu-content a {
+    color: #ffffff;
+    padding: 12px;
+    display: block;
+}
+.menu-content a:hover{
+    background-color: blue;
+}
+.dropdown:hover .menu-content {
+    display: block;
+}
+
+
+h1 {
+    color: #edc940;
+    font-family: georgia;
+    font-size: 30px;
+    text-align: center;
+}
+
+h2 {
+    color: #5858B8;
+    font-family: georgia;
+    font-size: 20px;
+}
+
+pre {
+    color: #ffffff;
+    font-family: georgia;
+    font-size: 12.3px;
+}
+
+p {
+    color: #ffffff;
+    font-family: georgia;
+    font-size: 12.3px;
+}
+
+table {
+    border: 1px solid;
+    color: #ffffff;
+    font-family: georgia;
+}
+th {
+    border: 1px solid;
+}
+td {
+    border: 1px solid;
+    padding: 5px;
+}
+caption {
+    color: #ffffff;
+}
+
+footer {
+    color: #000000;
+    background-color: #edc940;
+    font-family: georgia;
+    font-size: 15px;
+    height: 55px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.refs {
+    display: flex;
+}
