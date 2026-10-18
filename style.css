@@ -4,19 +4,19 @@ html {
 
   /* * { outline: 1px solid red; } */   /* this line was used to check the overflow/layout boundaries of elements */
 
-/* start of classes that style the navigation bar/menu button */
+  /* start of classes that style the navigation bar/menu button */
 .nav-bar {
     display: flex;
-    /* justify-content: flex-end;*/
     background-color: #2798f5;
     height: 60px;
+    /* justify-content: flex-end; */
 }
 .nav-bar img {
     position: relative;
+    top: -10px; /*moves the image up*/
     max-width: 300px;
-    height: 90px;
+    height: 95px;
     display: inline-block;
-    margin-bottom: 20px;
 }
 .dropdown {
     position: relative; /*the original position of this element is preserved. */
