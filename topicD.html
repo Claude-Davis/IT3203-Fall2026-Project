@@ -27,7 +27,30 @@
             </div>
         </div>
         
-        <pre></pre>
+        <h1>Privacy and DNS</h1>
+
+        <div class="privacy-risks">
+            <h2>Privacy Risks</h2>
+            <p>
+                The process of the DNS opens clients and servers to some level of cybersecurity risk.
+                The primary issue being that anyone able to view DNS traffic can also see the IP address of the client, the queried server, and the queried domain name.
+            </p>
+        </div>
+
+        <div class="privacy-protection">
+            <h2>Privacy Protection</h2>
+            <p>
+                In light of the aforementioned risks, measures have been taken to reduce these risks to users’ privacy.
+                Some methods of encryption include DNS over TLS, DNS over QUIC, and DNS over HTTPS.
+                DNS over TLS allows the client and DNS server to communicate using a shared session key.
+                The key encrypts all transactions between the machines.
+                This encryption methods also allows for authentication of the server’s name.
+                DNS over QUIC is similar to DNS over TLS, but it is noted to provide more efficient packet-loss recovery and removes the issue of head-of-line blocking.
+                Another method of privacy protection is the Oblivious DNS over HTTPS.
+                This method prevents any single DNS server from knowing both the client’s IP address and the DNS query content simultaneously.
+                Other methods of encryption include DNS Query Name Minimization and DNSCrypt.
+            </p>
+        </div>
     </body>
 
     <footer>
