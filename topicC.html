@@ -27,7 +27,38 @@
             </div>
         </div>
 
-        <pre></pre>
+        <h1>Architecture Types of the Domain Naming System</h1>
+        <p>intro/overview text</p>
+
+        <div class="arch-recursive">
+            <h2>Recursive DNS</h2>
+            <p>
+                Recursive DNS is the first step in locating an IP address.
+                When a user requests a site in a browser, a DNS lookup, or DNS request, is sent to a recursive DNS server.
+                The server will respond with either the IP information or by querying another server to obtain the information.
+                Recursive DNS servers store information in their cache memory for quick access.
+                The stored information are previous responses to DNS lookups.
+                The data is stored for a certain amount of time referred to as time to live (TTL).
+                The TTL is defined by the owner.
+            </p>
+        </div>
+
+        <div class="arch-authoritative">
+            <h2>Authoritative DNS</h2>
+            <p>
+                Authoritative DNS servers contain a database of public IP addresses and their domain names.
+                It stores the most up-to-date information compared to recursive servers. 
+                They respond to recursive servers’ requests if the recursive server does not have the needed information in its cache.
+            </p>
+        </div>
+
+        <div class="arch-comparison">
+            <h2>Recursive vs. Authoritative</h2>
+            <p>
+                comparison text
+            </p>
+        </div>
+
     </body>
 
     <footer>
