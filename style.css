@@ -8,6 +8,15 @@ html {
 .nav-bar {
     display: flex;
     /* justify-content: flex-end;*/
+    background-color: #2798f5;
+    height: 60px;
+}
+.nav-bar img {
+    position: relative;
+    max-width: 300px;
+    height: 90px;
+    display: inline-block;
+    margin-bottom: 20px;
 }
 .dropdown {
     position: relative; /*the original position of this element is preserved. */
@@ -17,11 +26,14 @@ html {
     background-color: #2798f5;
     padding: 9px;
     cursor: pointer;
+    margin-top: 11.5px; /* shifts the menu button down*/
+    margin-left: 9px; /* shifts the menu button to the right*/
 }
 .menu-content {
     display: none; /* ensures that only the menu button, and not its content, is showing when the cursor is away from the button*/
     position: absolute; /*enables the element to serve as a temporary element. the element is shown/removed based on specified conditions. its position on the page is not preserved*/
     background-color: #5858b8;
+    margin-left: 9px; /* shifts the menu button to the right*/
 }.menu-content a {
     color: #ffffff;
     padding: 9px;
