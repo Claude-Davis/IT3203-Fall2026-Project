@@ -22,19 +22,19 @@ html {
     position: relative;
     display: inline-block;
 }
-.petris-fact img {
-    color: #ffffff;
-    padding: 9px;
-    display: block; /* displays a rectangular element (with page links) when the menu button is hovered over*/
-}
 .fact1 {
     background-color: #5858b8;
     position: absolute;
     display: none; /* ensures that only the menu button, and not its content, is showing when the cursor is away from the button*/
+    top: -80px;
+    left: -40px;
+    font-size: 10px;
+    padding-left: 5px;
+    width: 100px;
+    border-radius: 7px;
 }
-.fact1 p {
+.petris img:hover + .petris-fact .fact1 {
     display: block;
-    background-color: #ffffff;
 }
 .dropdown {
     position: relative; /*the original position of this element is preserved. */
