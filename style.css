@@ -49,7 +49,7 @@ html {
 }
 .menu-content {
     display: none; /* ensures that only the menu button, and not its content, is showing when the cursor is away from the button*/
-    position: absolute; /*enables the element to serve as a temporary element. the element is shown/removed based on specified conditions. its position on the page is not preserved*/
+    position: absolute;
     background-color: #5858b8;
     margin-left: 9px; /* shifts the menu button to the right*/
 }.menu-content a {
@@ -127,8 +127,8 @@ footer {
     padding: 20px 0;
 }
 .footer-container {
-    text-align: center;  /*centers the content of the footer along its horizontal axis*/
-    margin: 0 auto; /*centers the content of the footer along its vertical axis*/
+    text-align: center;  /*centers the content of the footer along its vertical axis*/
+    margin: 0 auto; /*centers the content of the footer along its horizontal axis*/
     max-width: 1200px;
     padding: 0 20px;
 }
