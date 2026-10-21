@@ -7,13 +7,16 @@ html {
   /* start of classes that style the navigation bar/menu button */
 .nav-bar {
     display: flex;
-    background-color: #2798f5;
+    align-items: center;
+    gap: 9px;
+    padding: 0 9px;
     height: 60px;
+    background-color: #2798f5;
     /* justify-content: flex-end; */
 }
 .petris img {
     position: relative;
-    top: -10px; /*moves the image up*/
+    /* top: -10px; */ /*moves the image up*/
     max-width: 300px;
     height: 95px;
     cursor: pointer;
@@ -26,8 +29,8 @@ html {
     background-color: #5858b8;
     position: absolute;
     display: none; /* ensures that only the menu button, and not its content, is showing when the cursor is away from the button*/
-    top: -80px;
-    left: -40px;
+    top: -70px;
+    left: -35px;
     font-size: 10px;
     padding-left: 5px;
     width: 100px;
@@ -44,7 +47,7 @@ html {
     background-color: #2798f5;
     padding: 9px;
     cursor: pointer;
-    margin-top: 11.5px; /* shifts the menu button down*/
+    /* margin-top: 11.5px; */ /* shifts the menu button down*/
     margin-left: 9px; /* shifts the menu button to the right*/
 }
 .menu-content {
