@@ -17,8 +17,8 @@ html {
 .petris img {
     position: relative;
     /* top: -10px; */ /*moves the image up*/
-    max-width: 300px;
-    height: 95px;
+    width: 52px;
+    height: 65px;
     cursor: pointer;
 }
 .petris-fact {
@@ -29,8 +29,8 @@ html {
     background-color: #5858b8;
     position: absolute;
     display: none; /* ensures that only the menu button, and not its content, is showing when the cursor is away from the button*/
-    top: -70px;
-    left: -35px;
+    top: -50px;
+    left: -5px;
     font-size: 10px;
     padding-left: 5px;
     width: 100px;
