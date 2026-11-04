@@ -97,9 +97,9 @@ pre, ul, ol, dl { /* styles preformatted text sections, unorderded lists, ordere
 }
 
 /* a:hover {
- background-color: #ffffff;
- font-size: 21px;
- border-radius: 5px;
+    background-color: #ffffff;
+    ont-size: 21px;
+    order-radius: 5px;
 } */
 
 table {
