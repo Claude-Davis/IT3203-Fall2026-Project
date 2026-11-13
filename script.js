@@ -48,6 +48,11 @@ const questions = [
             { text: "Hashing", correct: false}, //hashing has a different application and protects data integrity, not confidentiality
             { text: "DoH", correct: true}  //when selected, include the open response follow up question: what does it stand for?
         ]
+        subQuestion: {
+            prompt: "What does DoH stand for?";
+            acceptedAnswers: ["Domain Name System over HTTPS", "DNS over HTTPS", "Domain Name System over HTTP", "DNS over HTTP"];
+            explanation: "DoH is DNS over HTTPS. DNS lookups are wrapped in HTTPS connection and hidden by blending into normal, encrypted web traffic."
+        }
     }
 ];
 
@@ -55,9 +60,15 @@ const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 
+//converts all input to lowercase and trims/removes spaces
+function normalize(text){
+    return text.toLowerCase().replace(/[^a-z\s]/g, "").replace(/\s+/g, " ").trim();  
+}
+
 let currentQuestionIndex = 0;
 let score = 0;
 
+//initial start to quiz
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
@@ -65,6 +76,7 @@ function startQuiz() {
     showQuestion();
 }
 
+//displays the questions
 function showQuestion(){
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
@@ -81,11 +93,58 @@ function showQuestion(){
     });
 }
 
+function showSubQuestion(subQuestion) {
+    const box = document.createElement("div");
+    box.id = "subquestion";
+
+    const label = document.createElement("label");
+    label.htmlFor = "subquestion-input";
+    label.innerText = subQuestion.prompt;
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.id = "subquestion-input";
+    input.autocomplete = "off";
+
+    const submit = document.createElement("button");
+    submit.innerText = "Submit";
+
+    const feedback = document.createElement("p");
+
+    function checkResponse() {
+        const userResponse = normalize(input.value);
+        if (!userResponse) return;
+
+        const accept = subQuestion.acceptedAnswers.includes(userResponse);
+        feedback.innerText = accept
+            ? `Correct! ${subQuestion.explanation}`
+            : `Not quite. ${subQuestion.explanation}`;
+        
+            input.disabled=true;
+            submit.disabled=true;
+            nextButton.classList.remove("hide");
+    }
+
+    submit.addEventListener("click", checkResponse);
+    input.addEventListener("keydown", e => {
+        if (e.key === "Enter") checkResponse();
+    });
+    box.append(label, input, submit, feedback);
+    document.getElementById("quiz").appendChild(box);
+    input.focus();
+}
+
 function resetState(){
     nextButton.classList.add("hide");
+
+    // (for following 2 lines)  added to clear subQuestion between questions
+    const oldResponse = document.getElementById("subQuestion");
+    if (oldResponse) oldResponse.remove();
+
     while (answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
     }
+
 }
 
 function selectAnswer(e) {
@@ -108,7 +167,14 @@ function selectAnswer(e) {
         button.disabled === "true";
     });
 
-    nextButton.classList.remove("hide");
+    //nextButton.classList.remove("hide");
+    const subQuestion = questions[currentQuestionIndex].subQuestion;
+    if (isCorrect && subQuestion) {
+        showSubQuestion(subQuestion); //the "Next" button appears when the response is submitted
+    }
+    else {
+        nextButton.classList.remove("hide");
+    }
 }
 
 
