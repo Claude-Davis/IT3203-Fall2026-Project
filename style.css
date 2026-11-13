@@ -150,3 +150,58 @@ footer {
     font-size: 20px;
     border-radius: 5px; /*rounds the corners of the background that appears when the link is hovered over*/
 }
+
+
+
+/*styling for quiz*/
+.quiz-cont {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+}
+
+.btn-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+button {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background: #e9ecef;
+}
+
+.correct {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+.incorrect {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+#next-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    width: 100%;
+}
+
+.hide {
+    display: none;
+}
