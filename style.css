@@ -12,6 +12,8 @@ html {
     padding: 0 9px;
     height: 60px;
     background-color: #2798f5;
+    border-radius: 10px;
+    border-width: 10px;
     /* justify-content: flex-end; */
 }
 .petris img {
@@ -44,17 +46,21 @@ html {
     display: inline-block; /* combines behaviors of inline and block-level elements. allows multiple items to be placed next to each other on the same line and flow with the text*/
 }
 .dropbtn {
-    background-color: #2798f5;
+    background-color: #2929d4;
     padding: 9px;
     cursor: pointer;
-    /* margin-top: 11.5px; */ /* shifts the menu button down*/
     margin-left: 9px; /* shifts the menu button to the right*/
+    border: 2px solid;
+    border-color: #000000;
+    color:#ffffff
 }
 .menu-content {
     display: none; /* ensures that only the menu button, and not its content, is showing when the cursor is away from the button*/
     position: absolute;
-    background-color: #5858b8;
+    background-color: #2929d4;
     margin-left: 9px; /* shifts the menu button to the right*/
+    border-radius: 10px;
+    border: 2px solid #000000;
 }.menu-content a {
     color: #ffffff;
     padding: 9px;
@@ -68,8 +74,14 @@ html {
 }
 /* end of classes that style the navigation bar/menu button */
 
+
+
+body {
+    flex-direction: column; /* vertically stacks navbar, quiz, and footer  */
+}
+
 h1 {
-    color: #2798f5;
+    color: #2929d4;
     font-family: georgia, serif;
     font-size: 30px;
     text-align: center; /* heading 1 text is centered horizontally*/
@@ -128,12 +140,15 @@ footer {
     line-height: 1.5;
     border: 1px solid #2798f5;
     padding: 20px 0;
+    border-radius: 10px;
+    border-width: 10px;
 }
 .footer-container {
     text-align: center;  /*centers the content of the footer along its vertical axis*/
     margin: 0 auto; /*centers the content of the footer along its horizontal axis*/
     max-width: 1200px;
     padding: 0 20px;
+    
 }
 .footer-container a:hover {
     background-color: #ffffff;
@@ -155,12 +170,14 @@ footer {
 
 /*styling for quiz*/
 .quiz-cont {
-    background: white;
+    margin: auto; /*centers the quiz box to the page/page body*/
+    background: #ffffff;
     padding: 25px;
-    border-radius: 10px;
+    border-radius: 35px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 500px;
+    margin-bottom: 20px; /*separates quiz box from footer*/
 }
 
 .btn-grid {
@@ -172,7 +189,8 @@ footer {
 
 button {
     padding: 12px;
-    font-size: 16px;
+    font-size: 15px;
+    font-family: georgia, serif;
     border: 1px solid #ccc;
     border-radius: 5px;
     background: #fff;
@@ -186,18 +204,18 @@ button:hover:not(:disabled) {
 
 .correct {
     background-color: #28a745;
-    color: white;
+    color: #ffffff;
     border-color: #28a745;
 }
 .incorrect {
     background-color: #dc3545;
-    color: white;
+    color: #ffffff;
     border-color: #dc3545;
 }
 
 #next-btn {
-    background-color: #007bff;
-    color: white;
+    background-color: #101077;
+    color: #ffffff;
     border: none;
     width: 100%;
 }
