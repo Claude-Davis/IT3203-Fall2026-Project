@@ -2,7 +2,7 @@
 // START of code section for self-assessment/quiz //
 const questions = [
     {
-        question: "Who is the Creator of the DNS?",
+        question: "Who is the creator of the DNS?",
         answers: [
             { text: "option 1", correct: false },
             { text: "option 2", correct: false},
