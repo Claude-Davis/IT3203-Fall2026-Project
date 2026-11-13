@@ -12,7 +12,7 @@ const questions = [
     {
         question: "What is an IP address?",
         answers: [
-            { text: "The identifier for server understandable to computers", correct: true },
+            { text: "The identifier for a device connected to the network that is understandable to computers", correct: true },
             { text: "option 2", correct: false},
             { text: "option 3", correct: false}
         ]
@@ -34,7 +34,7 @@ const questions = [
         ]
     },
     {
-        question: "There are __ types of DNS architecture.",
+        question: "There are __ types of DNS servers.",
         answers: [
             { text: "two (2); recursive and authoritative", correct: true },
             { text: "option 2", correct: false},
@@ -68,7 +68,7 @@ function startQuiz() {
 function showQuestion(){
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
-    questionElement.innerText = '${currentQuestionIndex + 1}. ${currentQuestion.question}';
+    questionElement.innerText = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
@@ -90,7 +90,7 @@ function resetState(){
 
 function selectAnswer(e) {
     const selectBtn = e.target;
-    const isCorrect = selectBtn.dataset.correct === true;
+    const isCorrect = selectBtn.dataset.correct === "true";
 
     if (isCorrect) {
         selectBtn.classList.add("correct");
@@ -102,25 +102,26 @@ function selectAnswer(e) {
 
     //highlights the right answer annd disable all buttons
     Array.from(answerButtons.children).forEach(button => {
-        if (button.dataset.correct === true) { 
+        if (button.dataset.correct === "true") { 
             button.classList.add("correct");
         }
-        button.disabled = true;
+        button.disabled === "true";
     });
 
     nextButton.classList.remove("hide");
 }
 
 
-nextButton.addEventListener("click", ()=> {
-    currentQuestionIndex++;
+nextButton.addEventListener("click", () => {
     if (currentQuestionIndex < questions.length) {
-        showQuestion();
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) showQuestion();
+        else showScore();
     }
     else {
-        showScore();
+        startQuiz(); //restart quiz
     }
-});
+})
 
 function showScore() {
     resetState();
