@@ -1,6 +1,6 @@
 
 // START of code section for self-assessment/quiz //
-const questions = [
+const questions = [  //array that stores all questions
     {
         question: "Who is the creator of the DNS?",
         answers: [
@@ -45,7 +45,7 @@ const questions = [
         ]
     },
     {
-        question: "There are __ types of DNS servers. ___.",
+        question: "There are __ types of DNS servers, ___.",
         answers: [
             { text: "two (2); recursive and authoritative", correct: true },
             { text: "three (3); Apache, Nginx, and LiteSpeed", correct: false}, //these are types of web servers
@@ -67,23 +67,25 @@ const questions = [
     }
 ];
 
-const questionElement = document.getElementById("question");
-const answerButtons = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
+const questionElement = document.getElementById("question"); //variable is assigned the tag with id=question on the html doc (<h3>)
+const answerButtons = document.getElementById("answer-buttons"); //variable is assigned answer-buttons id in html doc ("btn-grid" div class)
+const nextButton = document.getElementById("next-btn");  //variable assigned next-btn id (<button> tag in "hide" class)
 
-//converts all text input to lowercase and trims/removes spaces
+//normalize() converts all text input to lowercase and trims/removes spaces
 function normalize(text){
     return text.toLowerCase().replace(/[^a-z\s]/g, "").replace(/\s+/g, " ").trim();  
 }
+//toggleAnswer() highlights/removes highlight for responses that are clicked/selected
 function toggleAnswer(e) {
     e.target.classList.toggle("selected");
 }
-function hasPhrase(input, phrase) {  //searches input for inclusion of a particular phrase
+//hasPhrase() searches input for inclusion of a particular phrase
+function hasPhrase(input, phrase) {  
     return `${normalize(input)}`.includes(`${normalize(phrase)}`);
 }
 
-let currentQuestionIndex = 0;
-let score = 0;
+let currentQuestionIndex = 0; //initiates variable that will track what question the user is on 
+let score = 0;  //initiates variable to track score (increases only for correct answers)
 
 //initial start to quiz
 function startQuiz() {
@@ -96,16 +98,17 @@ function startQuiz() {
 //displays the questions
 function showQuestion(){
     resetState();
-    let currentQuestion = questions[currentQuestionIndex];
-    questionElement.innerText = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
+    let currentQuestion = questions[currentQuestionIndex];  //the current question is stored to currentQuestion variable
+    questionElement.innerText = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;  //replaces content in html of id="question" with the current question and its answers
 
     currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerText = answer.text;
-        if (answer.correct){ 
+        const button = document.createElement("button");  //each answer option is made clickable and stored to button variable
+        button.innerText = answer.text;  //each button is given the specified text
+        if (answer.correct){ //if the answer is correct,a data-correct attribute is set 
             button.dataset.correct = answer.correct;
         }
-        button.addEventListener("click", currentQuestion.type==="multi" ? toggleAnswer : selectAnswer);
+        //identifies the question type and determines to use toggleAnswer() for multiselect questions and selectAnswer() for others
+        button.addEventListener("click", currentQuestion.type==="multi" ? toggleAnswer : selectAnswer);  
         answerButtons.appendChild(button);
     });
     if (currentQuestion.type==="multi") showMultiSubmit();
@@ -128,42 +131,48 @@ function showOpenResponse(openResponse) {  //displays the subquestion
     submit.innerText = "Submit";
     submit.id = "openresponse-submit";
 
-    const feedback = document.createElement("p");
+    //initializes ffedback variable to be used to provide the explanation of the correct answer
+    const feedback = document.createElement("p"); 
 
-    function checkResponse() {
+    // this function checks the user input
+    function checkResponse() {  
         const userResponse = normalize(input.value);
         if (!userResponse) return;
 
         const accept = openResponse.acceptedAnswers.some(b => hasPhrase(userResponse, b)); //checks that the user input includes the correct answer
         feedback.innerText = accept
-            ? `Correct! ${openResponse.explanation}`
-            : `Not quite. ${openResponse.explanation}`;
+            ? `Correct! ${openResponse.explanation}`  //displays if the response is right
+            : `Not quite. ${openResponse.explanation}`;  //displays if the response iwrong/the sought for phrase is undetected
         
-            input.disabled=true;
-            submit.disabled=true;
+            input.disabled=true;  //option to provide input is removed
+            submit.disabled=true;  //the submit button is no longer visible or clickable
             nextButton.classList.remove("hide");
     }
 
-    submit.addEventListener("click", checkResponse);
+    submit.addEventListener("click", checkResponse);  //clicking the submit button triggers the checkResponse() function
+
+    //enables chexkResponse() to be triggered by cliking the "Enter" key
     input.addEventListener("keydown", e => {
         if (e.key === "Enter") checkResponse();
     });
-    openRespoBox.append(label, input, submit, feedback);
-    document.getElementById("quiz").appendChild(openRespoBox);
+
+
+    openRespoBox.append(label, input, submit, feedback);  //a box contains the label, button, input, feedback to easily remove all elements as needed
+    document.getElementById("quiz").appendChild(openRespoBox);  //the box is added to the "quiz" class in the html doc
     input.focus();
 }
 
 function showMultiSubmit() {//shows the submit button for questions with multi-select answer functions
-    const submit = document.createElement("button");
+    const submit = document.createElement("button"); //submit button created for multi-select questions
     submit.id = "multi-submit";
     submit.innerText = "Submit";
-    submit.addEventListener("click", checkMulti);
-    document.getElementById("quiz").appendChild(submit);
+    submit.addEventListener("click", checkMulti);  //enables clicking the submit button
+    document.getElementById("quiz").appendChild(submit);  //button is added to "quiz" class in html doc
 
     function checkMulti() { //checks questions w/ multi-select
         const buttons = Array.from(answerButtons.children);
         if (!buttons.some(b => b.classList.contains("selected"))) return;  //no answers are chosen yet
-        let allRight = true;
+        let allRight = true;  //initiates allRight variable to check if user selects all/only correct answers
         buttons.forEach(button => {
             const picked = button.classList.contains("selected");
             const correct = button.dataset.correct === "true";
@@ -173,7 +182,7 @@ function showMultiSubmit() {//shows the submit button for questions with multi-s
             if (correct) button.classList.add("correct");
             else if (picked) button.classList.add("incorrect");
 
-            button.disabled = true;
+            button.disabled = true;  //button no longer visible or clickable
         });
 
         if (allRight) score++;  //if the multiselect question is answered correctly, the score is increased by 1 point
@@ -219,17 +228,18 @@ function selectAnswer(e) {
         button.disabled === "true";
     });
 
-    //nextButton.classList.remove("hide");
-    const openResponse = questions[currentQuestionIndex].openResponse;
-    if (isCorrect && openResponse) {
-        showOpenResponse(openResponse); //the "Next" button appears when the response is submitted
+    //nextButton.classList.remove("hide");//
+
+    const openResponse = questions[currentQuestionIndex].openResponse;  //the current question's openResponse property, if applicable, is stored to openResponse variable
+    if (isCorrect && openResponse) {  //verifies if the uuser selected the correct answer and the question has an openResponse property
+        showOpenResponse(openResponse);   //calls the showOpenResponse() function
     }
     else {
-        nextButton.classList.remove("hide");
+        nextButton.classList.remove("hide");  //if either condition is not met, the next button is displayed instead
     }
 }
 
-
+//determines when to show the next button vs the score 
 nextButton.addEventListener("click", () => {
     if (currentQuestionIndex < questions.length) {
         currentQuestionIndex++;
@@ -241,12 +251,14 @@ nextButton.addEventListener("click", () => {
     }
 })
 
+//displays user's score
 function showScore() {
     resetState();
     questionElement.innerText = `Your Score is ${score}/${questions.length}`;
-    nextButton.innerText = "Try Again"; //option: ask 'Try Again?' if user clicks 'no'-ending message, if user clicks 'yes'-positive message and restart
-    nextButton.classList.remove("hide");
-    nextButton.onclick = () => location.reload();
+    nextButton.innerText = "Try Again"; //the text of the next button is changed to say "Try Again"
+            //feature option: ask 'Try Again?' if user clicks 'no'-ending message, if user clicks 'yes'-positive message and restart
+    nextButton.classList.remove("hide");  //next button, now "try again", is displayed 
+    nextButton.onclick = () => location.reload();  //reloads the page if the "Try Again" button is clicked
 }
 
 startQuiz();
