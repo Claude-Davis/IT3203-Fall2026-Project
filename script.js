@@ -50,7 +50,7 @@ const questions = [
         ],
         subQuestion: {
             prompt: "What does DoH stand for?",
-            acceptedAnswers: ["Domain Name System over HTTPS", "DNS over HTTPS", "Domain Name System over HTTP", "DNS over HTTP"],
+            acceptedAnswers: ["domain name system over https", "dns over https", "domain name system over http", "dns over http"],
             explanation: "DoH is DNS over HTTPS. DNS lookups are wrapped in HTTPS connection and hidden by blending into normal, encrypted web traffic."
         }
     }
@@ -137,8 +137,8 @@ function showSubQuestion(subQuestion) {
 function resetState(){
     nextButton.classList.add("hide");
 
-    // (for following 2 lines)  added to clear subQuestion between questions
-    const oldResponse = document.getElementById("subQuestion");
+    // (for following 2 lines)  added to clear subQuestion (box: input, question, and explanation) between questions
+    const oldResponse = document.getElementById("subquestion");
     if (oldResponse) oldResponse.remove();
 
     while (answerButtons.firstChild) {
