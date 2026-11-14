@@ -226,6 +226,9 @@ button:hover:not(:disabled) {
 #multi-submit {
     background-color: #2998f5;
 }
+#openresponse-submit {
+    background-color: #2998f5;
+}
 
 .hide {
     display: none;

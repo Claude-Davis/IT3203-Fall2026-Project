@@ -45,7 +45,7 @@ const questions = [
         ]
     },
     {
-        question: "There are __ types of DNS servers. ___",
+        question: "There are __ types of DNS servers. ___.",
         answers: [
             { text: "two (2); recursive and authoritative", correct: true },
             { text: "three (3); Apache, Nginx, and LiteSpeed", correct: false}, //these are types of web servers
@@ -78,6 +78,9 @@ function normalize(text){
 function toggleAnswer(e) {
     e.target.classList.toggle("selected");
 }
+function hasPhrase(input, phrase) {  //searches input for inclusion of a particular phrase
+    return `${normalize(input)}`.includes(`${normalize(phrase)}`);
+}
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -109,8 +112,8 @@ function showQuestion(){
 }
 
 function showOpenResponse(openResponse) {  //displays the subquestion
-    const box = document.createElement("div");
-    box.id = "openresponse";
+    const openRespoBox = document.createElement("div");
+    openRespoBox.id = "openresponse";
 
     const label = document.createElement("label");
     label.htmlFor = "openresponse-input";
@@ -123,6 +126,7 @@ function showOpenResponse(openResponse) {  //displays the subquestion
 
     const submit = document.createElement("button");
     submit.innerText = "Submit";
+    submit.id = "openresponse-submit";
 
     const feedback = document.createElement("p");
 
@@ -130,7 +134,7 @@ function showOpenResponse(openResponse) {  //displays the subquestion
         const userResponse = normalize(input.value);
         if (!userResponse) return;
 
-        const accept = openResponse.acceptedAnswers.includes(userResponse);
+        const accept = openResponse.acceptedAnswers.some(b => hasPhrase(userResponse, b)); //checks that the user input includes the correct answer
         feedback.innerText = accept
             ? `Correct! ${openResponse.explanation}`
             : `Not quite. ${openResponse.explanation}`;
@@ -144,8 +148,8 @@ function showOpenResponse(openResponse) {  //displays the subquestion
     input.addEventListener("keydown", e => {
         if (e.key === "Enter") checkResponse();
     });
-    box.append(label, input, submit, feedback);
-    document.getElementById("quiz").appendChild(box);
+    openRespoBox.append(label, input, submit, feedback);
+    document.getElementById("quiz").appendChild(openRespoBox);
     input.focus();
 }
 
@@ -155,27 +159,27 @@ function showMultiSubmit() {//shows the submit button for questions with multi-s
     submit.innerText = "Submit";
     submit.addEventListener("click", checkMulti);
     document.getElementById("quiz").appendChild(submit);
-}
 
-function checkMulti() { //checks questions w/ multi-select
-    const buttons = Array.from(answerButtons.children);
-    if (!buttons.some(b => b.classList.contains("selected"))) return;  //no answers are chosen yet
-    let allRight = true;
-    buttons.forEach(button => {
-        const picked = button.classList.contains("selected");
-        const correct = button.dataset.correct === "true";
+    function checkMulti() { //checks questions w/ multi-select
+        const buttons = Array.from(answerButtons.children);
+        if (!buttons.some(b => b.classList.contains("selected"))) return;  //no answers are chosen yet
+        let allRight = true;
+        buttons.forEach(button => {
+            const picked = button.classList.contains("selected");
+            const correct = button.dataset.correct === "true";
 
-        if (picked !== correct) allRight = false; //if a correct option is missed or a wrong option is chosen
+            if (picked !== correct) allRight = false; //if a correct option is missed or a wrong option is chosen
 
-        if (correct) button.classList.add("correct");
-        else if (picked) button.classList.add("incorrect");
+            if (correct) button.classList.add("correct");
+            else if (picked) button.classList.add("incorrect");
 
-        button.disabled = true;
-    });
+            button.disabled = true;
+        });
 
-    if (allRight) score++;  //if the multiselect question is answered correctly, the score is increased by 1 point
-    document.getElementById("multi-submit").remove();
-    nextButton.classList.remove("hide");
+        if (allRight) score++;  //if the multiselect question is answered correctly, the score is increased by 1 point
+        document.getElementById("multi-submit").remove();
+        nextButton.classList.remove("hide");
+    }
 }
 
 function resetState(){
@@ -239,7 +243,7 @@ nextButton.addEventListener("click", () => {
 
 function showScore() {
     resetState();
-    questionElement.innerText = `Your Score is ${score}`;
+    questionElement.innerText = `Your Score is ${score}/${questions.length}`;
     nextButton.innerText = "Try Again"; //option: ask 'Try Again?' if user clicks 'no'-ending message, if user clicks 'yes'-positive message and restart
     nextButton.classList.remove("hide");
     nextButton.onclick = () => location.reload();
