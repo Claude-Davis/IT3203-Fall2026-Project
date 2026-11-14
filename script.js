@@ -75,6 +75,9 @@ const nextButton = document.getElementById("next-btn");
 function normalize(text){
     return text.toLowerCase().replace(/[^a-z\s]/g, "").replace(/\s+/g, " ").trim();  
 }
+function toggleAnswer(e) {
+    e.target.classList.toggle("selected");
+}
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -146,7 +149,7 @@ function showOpenResponse(openResponse) {  //displays the subquestion
     input.focus();
 }
 
-function showMultiSubmit() {//show questions with multi-select answer functions
+function showMultiSubmit() {//shows the submit button for questions with multi-select answer functions
     const submit = document.createElement("button");
     submit.id = "multi-submit";
     submit.innerText = "Submit";
@@ -155,7 +158,7 @@ function showMultiSubmit() {//show questions with multi-select answer functions
 }
 
 function checkMulti() { //checks questions w/ multi-select
-    const buttons = Array.from(answer.Buttons.children);
+    const buttons = Array.from(answerButtons.children);
     if (!buttons.some(b => b.classList.contains("selected"))) return;  //no answers are chosen yet
     let allRight = true;
     buttons.forEach(button => {
@@ -183,7 +186,7 @@ function resetState(){
     if (oldResponse) oldResponse.remove();
 
     // (for following 2 lines)  clears the submit button for multiselect questions
-    const oldSubmit = document.getElementById("multi-select");
+    const oldSubmit = document.getElementById("multi-submit");
     if (oldSubmit) oldSubmit.remove();
 
     while (answerButtons.firstChild) {

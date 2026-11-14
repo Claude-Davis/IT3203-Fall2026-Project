@@ -203,7 +203,7 @@ button:hover:not(:disabled) {
 }
 
 .btn-grid button.selected {
-    outline: 3px sold #4a90d9;
+    outline: 3px solid #101077;
 }
 
 .correct {
@@ -222,6 +222,9 @@ button:hover:not(:disabled) {
     color: #ffffff;
     border: none;
     width: 100%;
+}
+#multi-submit {
+    background-color: #2998f5;
 }
 
 .hide {
