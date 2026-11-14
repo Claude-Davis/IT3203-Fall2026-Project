@@ -202,6 +202,10 @@ button:hover:not(:disabled) {
     background: #e9ecef;
 }
 
+.btn-grid button.selected {
+    outline: 3px sold #4a90d9;
+}
+
 .correct {
     background-color: #28a745;
     color: #ffffff;
