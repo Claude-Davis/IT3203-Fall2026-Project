@@ -47,10 +47,10 @@ const questions = [
             { text: "Symmetric Encryption", correct: false }, //this is a general type of encryption, not a specific method
             { text: "Hashing", correct: false}, //hashing has a different application and protects data integrity, not confidentiality
             { text: "DoH", correct: true}  //when selected, include the open response follow up question: what does it stand for?
-        ]
+        ],
         subQuestion: {
-            prompt: "What does DoH stand for?";
-            acceptedAnswers: ["Domain Name System over HTTPS", "DNS over HTTPS", "Domain Name System over HTTP", "DNS over HTTP"];
+            prompt: "What does DoH stand for?",
+            acceptedAnswers: ["Domain Name System over HTTPS", "DNS over HTTPS", "Domain Name System over HTTP", "DNS over HTTP"],
             explanation: "DoH is DNS over HTTPS. DNS lookups are wrapped in HTTPS connection and hidden by blending into normal, encrypted web traffic."
         }
     }
